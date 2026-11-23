@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "shortvid-corpus"
+dynamic = ["version"]
+description = "Build reproducible research corpora of short videos (metadata + transcripts) from Kwai and Snapchat Spotlight."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Zait Dioses", email = "stebandioses@gmail.com" }]
+requires-python = ">=3.11"
+keywords = ["corpus", "short video", "transcription", "content analysis", "kwai", "snapchat", "whisper", "computational social science"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Sociology",
+]
+dependencies = [
+    "httpx>=0.27",
+    "imageio-ffmpeg>=0.5",
+]
+
+[project.optional-dependencies]
+local = ["faster-whisper>=1.0"]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+shortvid = "shortvid_corpus.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/zaxdm/shortvid-corpus"
+Issues = "https://github.com/zaxdm/shortvid-corpus/issues"
+
+[tool.hatch.version]
+path = "src/shortvid_corpus/__init__.py"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.format]
+quote-style = "single"
