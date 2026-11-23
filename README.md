@@ -3,7 +3,7 @@
 Build reproducible research corpora of short videos (metadata + spoken transcripts) from public pages of **Kwai** and **Snapchat Spotlight**.
 
 ```bash
-pip install shortvid-corpus
+pip install git+https://github.com/zaxdm/shortvid-corpus
 shortvid collect kwai --search "vacina" --hashtag saude --limit 200 --out corpus/vaccines
 ```
 
@@ -28,9 +28,11 @@ What it does:
 Python 3.11 or newer.
 
 ```bash
-pip install shortvid-corpus            # hosted speech-to-text (Groq or Deepgram)
-pip install "shortvid-corpus[local]"   # adds local Whisper (faster-whisper)
+pip install git+https://github.com/zaxdm/shortvid-corpus                    # hosted speech-to-text (Groq or Deepgram)
+pip install "shortvid-corpus[local] @ git+https://github.com/zaxdm/shortvid-corpus"   # adds local Whisper
 ```
+
+A release on PyPI is planned.
 
 `ffmpeg` is bundled through `imageio-ffmpeg`; nothing else is needed.
 

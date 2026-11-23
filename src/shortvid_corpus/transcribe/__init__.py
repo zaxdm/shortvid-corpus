@@ -146,7 +146,7 @@ class Deepgram(Transcriber):
 class LocalWhisper(Transcriber):
     """Whisper running on this computer with faster-whisper (no API key, no data leaves the machine).
 
-    Install with `pip install shortvid-corpus[local]`. Useful when ethics approval does not allow
+    Needs the `local` extra (faster-whisper); see the README. Useful when ethics approval does not allow
     sending audio to third parties, and for exact reproducibility (fixed model weights).
     """
 
@@ -154,7 +154,7 @@ class LocalWhisper(Transcriber):
         try:
             from faster_whisper import WhisperModel
         except ImportError as exc:
-            raise TranscriptionError('Local transcription needs: pip install "shortvid-corpus[local]"') from exc
+            raise TranscriptionError('Local transcription needs faster-whisper: pip install faster-whisper') from exc
         self.model_id = f'faster-whisper/{model}'
         self._model = WhisperModel(model, device=device, compute_type=compute_type)
         self._lock = asyncio.Lock()  # One audio at a time: the model already uses every core.
